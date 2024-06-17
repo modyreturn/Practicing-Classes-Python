@@ -1,0 +1,45 @@
+print("Practicing Classes in Python")
+
+class Clients(): #Creating users class for an app to watch movies like Netflix.
+    def __init__(self, fname, lname, email, plan):   #class properties
+        self.fname = fname
+        self.lname = lname
+        self.email = email
+        self.plan_list = ["Basic", "Premium"]
+        if plan in self.plan_list:
+            self.plan = plan
+
+        else:
+            raise Exception("Invalid Plan")
+
+    def change_plan(self, new_plan):   #Creating a function if the users wants to change their plan
+        if new_plan in self.plan_list:
+            self.plan = new_plan
+
+        else:
+            print("Invalid Plan")
+
+    #Creating a method to define if the user is eligible to watch this movie or not
+    def watch_movie(self, movie_name, movie_plan): 
+        if self.plan == movie_plan:
+            print("Watch Now")
+        elif self.plan == "Premium":
+            print("Watch Now")
+        elif self.plan == "Basic" and movie_plan == "Premium":
+            print("You need to upgrade your plan to watch this movie")
+
+        else:
+            print("Invalid Plan")
+
+#You can create as many users as you want...      
+client01 = Clients("Mohamed", "Fawzi", "modyreturn@gmail.com", "Basic")
+client02 = Clients("Jasmin", "Mohamed", "jasmin@gmail.com", "Premium")
+client03 = Clients("Adam", "Mohamed", "adam@gmail.com", "Basic")
+
+print("Welcome",client01.fname,"You have a", client01.plan, "plan, Enjoy!")
+
+client01.watch_movie("The beekeeper", "Premium") #is ti check if the user can watch this movie...
+
+client01.change_plan("Premium")
+print(client01.plan)      #the user upgraded his plan and now he can watch the movie
+client01.watch_movie("The beekeeper", "Premium")
